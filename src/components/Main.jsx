@@ -1,51 +1,59 @@
-import React, { useState } from 'react'; // Tuo useState Hook
-
+import React, { useState } from 'react';
 
 export default function Main() {
-    const ingredients = ["Chicken", "Oregano", "Tomatoes"]
+    // 1. Muuta ingredients-taulukko tilaksi useState-hookilla
+    const [ingredients, setIngredients] = useState(["Chicken", "Oregano", "Tomatoes"]);
 
     // State, joka pitää kirjaa input-kentän arvosta
     const [newIngredient, setNewIngredient] = useState("");
 
-    // Käsitellään input-kentän muutoksia
+    // Käsittelee input-kentän muutoksia
     function handleChange(event) {
         setNewIngredient(event.target.value);
     }
 
-    // Käsitellään lomakkeen lähetystä
+    // Käsittelee lomakkeen lähetystä
     function handleSubmit(event) {
-        // Estä selaimen oletuskäyttäytyminen, joka lataisi sivun uudelleen
         event.preventDefault();
 
-        // Tässä voit tehdä jotain newIngredient-arvolla
-        console.log("Lisättävä ainesosa:", newIngredient);
+        // 2. Estä tyhjän ainesosan lisääminen
+        if (newIngredient.trim() === "") {
+            return; // Älä tee mitään, jos syöte on tyhjä
+        }
 
-        // Tyhjennä input-kenttä lähetyksen jälkeen (valinnainen)
+        // 3. Päivitä ingredients-tila: luo uusi taulukko ja lisää uusi ainesosa
+        // spread-operaattori (...) kopioi kaikki vanhat ainesosat uuteen taulukkoon
+        // ja newIngredient lisätään uutena elementtinä loppuun.
+        setIngredients(prevIngredients => [...prevIngredients, newIngredient]);
+
+        // Tyhjennä input-kenttä lähetyksen jälkeen
         setNewIngredient("");
     }
 
-        const ingredientsList = ingredients.map((ingredient, index) => {
+    // 4. Mappaa päivitetty ingredients-tila listakohteiksi
+    const ingredientsList = ingredients.map((ingredient, index) => {
         return (
-            <li key={index}>
+            <li key={index}> {/* Käytä indexiä keynä staattisessa tapauksessa */}
                 {ingredient}
             </li>
         );
     });
 
-  return (
-          <main>
+    return (
+        <main>
             <form className="add-ingredient-form" onSubmit={handleSubmit}>
-                <input  type="text" 
-                        placeholder="e.g. oregano" 
-                        aria-label="Add ingredient"
-                        value={newIngredient} // Liitä inputin arvo stateen (controlled component)
-                        onChange={handleChange} // Käsittele inputin muutoksia
-                        />
+                <input
+                    type="text"
+                    placeholder="e.g. oregano"
+                    aria-label="Add ingredient"
+                    value={newIngredient}
+                    onChange={handleChange}
+                />
                 <button>Add ingredient</button>
             </form>
             <ul>
                 {ingredientsList}
             </ul>
-          </main>
-  )
+        </main>
+    );
 }
