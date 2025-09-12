@@ -30,6 +30,10 @@ main {
     padding: 30px 30px 10px;
 }
 
+.main-main {
+    padding-left: 220px;
+}
+
 .add-ingredient-form {
     display: flex;
     justify-content: center;
@@ -62,4 +66,123 @@ main {
 .add-ingredient-form > button::before {
     content: "+";
     margin-right: 5px;
+}
+
+
+ul.ingredients-list {
+    margin-bottom: 48px;
+}
+
+ul.ingredients-list > li {
+    color: #475467;
+    line-height: 28px;
+}
+
+.get-recipe-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    background: #F0EFEB;
+    padding: 10px 28px;
+}
+
+.get-recipe-container h3 {
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.get-recipe-container p {
+    color: #6B7280;
+    font-size: 0.875rem;
+    line-height: 20px;
+}
+
+.get-recipe-container button {
+    border: none;
+    border-radius: 6px;
+    background: #D17557;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+    color: #FAFAF8;
+    padding: 9px 17px;
+    font-family: Inter, sans-serif;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+/* Test */
+
+.main-test {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+      background-color: #0C4A6E;
+    margin: 0;
+    font-family: "Inter", sans-serif;
+}
+
+.card {
+    background-color: white;
+    width: 200px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    height: 350px;
+}
+
+.card .avatar {
+    width: 100%;
+    padding: 10%;
+    padding-bottom: 0;
+}
+
+.card .name {
+    margin-block: 13px;
+    color: #333333;
+}
+
+.card .info {
+    padding: 10px;
+}
+
+.card .favorite {
+    width: 25px;
+    cursor: pointer;
+}
+
+.card .contact {
+    font-size: 0.75rem;
+    color: gray;
+    margin-block: 7px;
+}
+
+.card .favorite-button {
+    border: none;
+    background: transparent;
+}
+
+.card .favorite-button:active {
+    transform: none;
+    box-shadow: none;
+}
+
+.info-container {
+    display: flex; /* Muuttaa kontainerin flexboxiksi. */
+    flex-direction: column; /* Järjestää lapsielementit sarakkeeseen pystysuoraan. */
+    align-items: center; /* Keskitä lapsielementit vaakasunnassa. */
+    padding: 1px; /* Lisää sisäpehmustetta. */
+    gap: 1px; /* Lisää tilaa elementtien väliin. */
+}
+
+.flex-container {
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-around; 
+  align-items: flex-start; 
+}
+
+
+.main-test {
+  margin-left: 200px; 
 }

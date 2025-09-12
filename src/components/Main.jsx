@@ -1,51 +1,45 @@
 import React, { useState } from 'react';
 
 export default function Main() {
-    const [ingredients, setIngredients] = useState(["Chicken", "Oregano", "Tomatoes"]);
+    const [ingredients, setIngredients] = useState([]);
 
-    const [newIngredient, setNewIngredient] = useState("");
+    const ingredientsListItems = ingredients.map((ingredient, index) => (
+        <li key={index}>{ingredient}</li>
+    ))
 
-    // Käsittelee input-kentän muutoksia
-    function handleChange(event) {
-        setNewIngredient(event.target.value);
-    }
-
-    // Käsittelee lomakkeen lähetystä
-    function handleSubmit(event) {
-        event.preventDefault();
-
-        // 2. Estä tyhjän ainesosan lisääminen
+    function addIngredient(formData) {
+        const newIngredient = formData.get("ingredient")
         if (newIngredient.trim() === "") {
-            return; // Älä tee mitään, jos syöte on tyhjä
+            return; // Lopeta funktion suoritus, jos syöte on tyhjä
         }
-
         setIngredients(prevIngredients => [...prevIngredients, newIngredient]);
-        setNewIngredient("");
     }
-
-    const ingredientsList = ingredients.map((ingredient, index) => {
-        return (
-            <li key={index}> {/* Käytä indexiä keynä staattisessa tapauksessa */}
-                {ingredient}
-            </li>
-        );
-    });
 
     return (
-        <main>
-            <form className="add-ingredient-form" onSubmit={handleSubmit}>
+        <main className='main-main'>
+            <form action={addIngredient} className="add-ingredient-form">
                 <input
                     type="text"
                     placeholder="e.g. oregano"
                     aria-label="Add ingredient"
-                    value={newIngredient}
-                    onChange={handleChange}
+                    name="ingredient"
                 />
                 <button>Add ingredient</button>
             </form>
-            <ul>
-                {ingredientsList}
-            </ul>
+                {ingredients.length > 0 && 
+                <section>
+                    <h2>Ingredients on hand:</h2>
+                    <ul className="ingredients-list" aria-live="polite">{ingredientsListItems}</ul>
+                    {ingredients.length > 3 && <div className="get-recipe-container">
+                        <div>
+                            <h3>Ready for a recipe?</h3>
+                            <p>Generate a recipe from your list of ingredients.</p>
+                        </div>
+                        <button>Get a recipe</button>
+                    </div>}
+                </section>
+            }
+
         </main>
     );
 }
