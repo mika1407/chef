@@ -1,54 +1,8 @@
-import React, { useState } from 'react';
 
-export default function Main() {
-    const [ingredients, setIngredients] = useState([
-        "all the main spices", "pasta", "ground beef", "tomato paste"
-    ]);
 
-    const [recipeShown, setRecipeShown] = useState(false);
-
-    function toggleRecipe() {
-        setRecipeShown(prevShown => !prevShown);
-    }
-
-    const ingredientsListItems = ingredients.map((ingredient, index) => (
-        <li key={index}>{ingredient}</li>
-    ))
-
-    function addIngredient(formData) {
-        const newIngredient = formData.get("ingredient")
-        if (newIngredient.trim() === "") {
-            return; // Lopeta funktion suoritus, jos syöte on tyhjä
-        }
-        setIngredients(prevIngredients => [...prevIngredients, newIngredient]);
-    }
-
-    return (
-        <main className='main-main'>
-            <form action={addIngredient} className="add-ingredient-form">
-                <input
-                    type="text"
-                    placeholder="e.g. oregano"
-                    aria-label="Add ingredient"
-                    name="ingredient"
-                />
-                <button>Add ingredient</button>
-            </form>
-                {ingredients.length > 0 && 
-                <section>
-                    <h2>Ingredients on hand:</h2>
-                    <ul className="ingredients-list" aria-live="polite">{ingredientsListItems}</ul>
-                    {ingredients.length > 3 && <div className="get-recipe-container">
-                        <div>
-                            <h3>Ready for a recipe?</h3>
-                            <p>Generate a recipe from your list of ingredients.</p>
-                        </div>
-                        <button onClick={toggleRecipe}>Get a recipe</button>
-                    </div>}
-                </section>
-            }
-
-            {recipeShown && <section>
+export default function ClaudeRecipe() {
+  return (
+    <section>
                 <h2>Chef Claude Recommends:</h2>
                 <article className="suggested-recipe-container" aria-live="polite">
                     <p>Based on the ingredients you have available, I would recommend making a simple a delicious <strong>Beef Bolognese Pasta</strong>. Here is the recipe:</p>
@@ -79,8 +33,6 @@ export default function Main() {
                         <li>Serve hot, garnished with additional fresh basil or grated Parmesan cheese if desired.</li>
                     </ol>
                 </article>
-            </section>}
-
-        </main>
-    );
+            </section>
+  )
 }

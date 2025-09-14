@@ -1,5 +1,5 @@
 import Header from './components/Header'
-import Main from './components/Main'
+import Main from './Main'
 import Test from './components/Test'
 
 function App() {
