@@ -1,5 +1,5 @@
 
-export default function ClaudeRecipe(props) {
+export default function IngredientsList(props) {
     const ingredientsListItems = props.ingredients.map((ingredient, index) => (
         <li key={index}>{ingredient}</li>
     ))
@@ -12,7 +12,7 @@ export default function ClaudeRecipe(props) {
                 <h3>Ready for a recipe?</h3>
                 <p>Generate a recipe from your list of ingredients.</p>
             </div>
-            <button onClick={props.toggleRecipe}>Get a recipe</button>
+            <button onClick={props.getRecipe}>Get a recipe</button>
         </div>}
     </section>
   )
