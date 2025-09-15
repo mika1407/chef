@@ -23,6 +23,12 @@ export default function Main() {
         setRecipe(newRecipe);
     }
 
+    // FUNKTIO TILAN NOLLAAMISEEN
+    function resetApp() {
+        setIngredients([]); // Tyhjentää ainesosalistan
+        setRecipe(null); // Tyhjentää reseptin tilan
+    }
+
     return (
         <main className='main-main'>
             <h4>Add at least four ingredients</h4>
@@ -39,6 +45,7 @@ export default function Main() {
                 {ingredients.length > 0 && <IngredintsList
                     ingredients={ingredients}
                     getRecipe={getRecipe}
+                    resetApp={resetApp}
                 />  
             }
 

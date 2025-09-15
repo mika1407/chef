@@ -13,6 +13,7 @@ export default function IngredientsList(props) {
                 <p>Generate a recipe from your list of ingredients.</p>
             </div>
             <button onClick={props.getRecipe}>Get a recipe</button>
+            <button onClick={props.resetApp} className="reset-button">Reset</button>
         </div>}
     </section>
   )

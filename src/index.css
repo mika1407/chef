@@ -99,7 +99,7 @@ ul.ingredients-list > li {
     line-height: 20px;
 }
 
-.get-recipe-container button {
+.get-recipe-container button:not(.reset-button) {
     border: none;
     border-radius: 6px;
     background: #D17557;
@@ -185,4 +185,29 @@ ul.ingredients-list > li {
 
 .main-test {
   margin-left: 200px; 
+}
+
+.suggested-recipe-container {
+    color: #475467;
+    line-height: 28px;
+    font-size: 1.125rem;
+    font-weight: 400;
+}
+
+.suggested-recipe-container ul li, .suggested-recipe-container ol li {
+    margin-bottom: 8px;
+}
+
+.get-recipe-container .reset-button {
+    background-color: rgb(228, 125, 125);
+    margin-left: 10px;
+
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+    color: #FAFAF8;
+    padding: 9px 17px;
+    font-family: Inter, sans-serif;
+    font-size: 0.875rem;
+    cursor: pointer;
 }
