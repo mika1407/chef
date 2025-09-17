@@ -198,7 +198,7 @@ ul.ingredients-list > li {
     margin-bottom: 8px;
 }
 
-.get-recipe-container .reset-button {
+.suggested-recipe-container .reset-button {
     background-color: rgb(228, 125, 125);
     margin-left: 10px;
 

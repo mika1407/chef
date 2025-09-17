@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
-import ClaudeRecipe from './components/ClaudeRecipe';
-import IngredintsList from './components/IngredientsList';
-import { getRecipeFromMistral } from "../ai"
+import React, { useState, useRef, useEffect } from 'react';
+import ClaudeRecipe from './ClaudeRecipe';
+import IngredintsList from './IngredientsList';
+import { getRecipeFromMistral } from "../../ai"
 
 export default function Main() {
     const [ingredients, setIngredients] = useState([]);
-
+    
     const [recipe, setRecipe] = useState(null);
+    const recipeSection = useRef(null)
+    
+    useEffect(() => {
+        // Varmista, että resepti on olemassa ja että viite-elementti on renderöity.
+        if (recipe && recipeSection.current) {
+            recipeSection.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [recipe])
 
     function addIngredient(formData) {
         const newIngredient = formData.get("ingredient")
@@ -43,13 +51,13 @@ export default function Main() {
             </form>
             
                 {ingredients.length > 0 && <IngredintsList
+                    ref={recipeSection}
                     ingredients={ingredients}
                     getRecipe={getRecipe}
-                    resetApp={resetApp}
                 />  
             }
 
-            {recipe && <ClaudeRecipe recipe={recipe}/>}
+            {recipe && <ClaudeRecipe recipe={recipe} resetApp={resetApp}/>}
 
         </main>
     );
